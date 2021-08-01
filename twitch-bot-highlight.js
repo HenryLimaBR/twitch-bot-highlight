@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name twitch-bot-highlight
 // @namespace https://github.com/henrylimabr
-// @version 0.1.2
+// @version 0.1.3
 // @description Highlight twitch chat bots among your users!
 // @homepage https://github.com/henrylimabr/twitch-bot-highlight
 // @updateURL https://raw.githubusercontent.com/HenryLimaBR/twitch-bot-highlight/main/twitch-bot-highlight.js
@@ -39,13 +39,11 @@ function main() {
     line-height: 100%;
     transition: ease-out 150ms;
   }
-
   .tbh_button:hover {
     width: 32px;
     color: #fff;
     transform: scale(1.05);
   }
-
   .tbh_button:active {
     background-color: #fff;
     border-color: #5c16c5;
@@ -60,6 +58,7 @@ function main() {
   document.head.appendChild(style_element)
 
   async function highlight() {
+    /** @type {HTMLButtonElement[]} */
     const twitch_list_button = [...document.querySelectorAll('button[data-test-selector="chat-viewers-list__button"]')]
     if (twitch_list_button.length < 1) {
       return alert('The user list should be open!')
@@ -69,7 +68,9 @@ function main() {
     const bot_list = (await res.json()).bots.map((bot) => bot[0])
     const twitch_list = twitch_list_button.map((button) => {
       return {
+        /** @type {string} */
         username: button.getAttribute('data-username'),
+        /** @type {HTMLParagraphElement} */
         p: button.children[0]
       }
     })
