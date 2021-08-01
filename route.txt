@@ -1,1 +1,0 @@
-https://api.twitchinsights.net/v1/bots/online
