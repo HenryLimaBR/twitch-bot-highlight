@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name twitch-bot-highlight
 // @namespace https://github.com/henrylimabr
-// @version 0.1
+// @version 0.1.1
 // @description Highlight twitch chat bots among your users!
 // @author Henry Lima (https://github.com/henrylimabr)
 // @match https://www.twitch.tv/*
@@ -63,7 +63,7 @@ function main() {
     }
     const res = await fetch('https://api.twitchinsights.net/v1/bots/online')
     /** @type {string[]} */
-    const bot_list = (await res.json()).bots.map((username) => username[0])
+    const bot_list = (await res.json()).bots.map((bot) => bot[0])
     const twitch_list = twitch_list_button.map((button) => {
       return {
         username: button.getAttribute('data-username'),
@@ -75,6 +75,7 @@ function main() {
       const username = bot.p.innerText.split(' ')[0]
       bot.p.style.color = '#f00'
       bot.p.innerText = `${username} (BOT)`
+      bot.p.title = `Listed in "Twitch Insights"!`
     })
   }
 
@@ -82,6 +83,7 @@ function main() {
     const button = document.createElement('button')
     button.innerText = '🗘'
     button.className = 'tbh_button'
+    button.title = 'Highlight Bots in Current List!'
     document.body.appendChild(button)
     button.addEventListener('click', highlight, false)
   }
