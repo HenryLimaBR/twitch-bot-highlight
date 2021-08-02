@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name twitch-bot-highlight
 // @namespace https://github.com/henrylimabr
-// @version 0.1.3
+// @version 0.1.4
 // @description Highlight twitch chat bots among your users!
 // @homepage https://github.com/henrylimabr/twitch-bot-highlight
 // @updateURL https://raw.githubusercontent.com/HenryLimaBR/twitch-bot-highlight/main/twitch-bot-highlight.js
@@ -17,8 +17,17 @@
 
 console.log('Twitch Bot Highlight :D')
 
-function main() {
-  const custom_css = `
+async function main() {
+  /** @type {string[]} */
+  let trusted_bots = []
+  try {
+    trusted_bots = await (await (fetch('https://raw.githubusercontent.com/HenryLimaBR/twitch-bot-highlight/main/trusted-bots.json'))).json()
+  } catch (err) {
+    console.warn('Fail Fetching Trusted Bot List!')
+  }
+
+  const style_element = document.createElement('style')
+  style_element.innerHTML = `
   .tbh_button {
     position: absolute;
     width: 16px;
@@ -35,7 +44,7 @@ function main() {
     text-align: center;
     box-sizing: border-box;
     outline: 0;
-    font-size: 28px;
+    font-size: 20px;
     line-height: 100%;
     transition: ease-out 150ms;
   }
@@ -52,9 +61,6 @@ function main() {
     transition: 0;
   }
   `
-
-  const style_element = document.createElement('style')
-  style_element.innerHTML = custom_css
   document.head.appendChild(style_element)
 
   async function highlight() {
@@ -63,9 +69,18 @@ function main() {
     if (twitch_list_button.length < 1) {
       return alert('The user list should be open!')
     }
-    const res = await fetch('https://api.twitchinsights.net/v1/bots/online')
+    let res = null
+    try {
+      res = await fetch('https://api.twitchinsights.net/v1/bots/online')
+    } catch (err) {
+      console.warn('Failed Fetching Currently Online Bots!')
+      return alert('Twitch Insights May Be Offline :/')
+    }
     /** @type {string[]} */
     const bot_list = (await res.json()).bots.map((bot) => bot[0])
+    if (bot_list.length < 1) {
+      return alert('Twitch Insights is problably on Maintenance! :/')
+    }
     const twitch_list = twitch_list_button.map((button) => {
       return {
         /** @type {string} */
@@ -74,25 +89,23 @@ function main() {
         p: button.children[0]
       }
     })
+
     const bots = twitch_list.filter((user) => bot_list.includes(user.username))
     bots.forEach(bot => {
+      const trusted = trusted_bots.includes(bot.username)
       const username = bot.p.innerText.split(' ')[0]
-      bot.p.style.color = '#f00'
-      bot.p.innerText = `${username} (BOT)`
+      bot.p.style.color = trusted ? '#1f1' : '#f11'
+      bot.p.innerText = `${username} (${trusted ? 'Trusted' : 'Untrusted'} BOT)`
       bot.p.title = `Listed in "Twitch Insights"!`
     })
   }
 
-  function renderButton() {
-    const button = document.createElement('button')
-    button.innerText = '🗘'
-    button.className = 'tbh_button'
-    button.title = 'Highlight Bots in Current List!'
-    document.body.appendChild(button)
-    button.addEventListener('click', highlight, false)
-  }
-
-  renderButton()
+  const button = document.createElement('button')
+  button.innerText = '🤖'
+  button.className = 'tbh_button'
+  button.title = 'Highlight Bots in Current List!'
+  document.body.appendChild(button)
+  button.addEventListener('click', highlight, false)
 }
 
 main()
