@@ -1,0 +1,38 @@
+@keyframes button_animation {
+  from {
+    transform: translate(100%, 0) scale(0);
+    opacity: 0;
+    background-color: #dfc2ca;
+  }
+}
+
+.open_button {
+  font-family: 'Segoe UI';
+  width: 40px;
+  height: 40px;
+  margin-right: 16px;
+  z-index: 9999;
+  border-radius: 8px;
+  background-color: #333;
+  transition: 125ms ease-out;
+  animation: button_animation 250ms ease-out backwards;
+  background-size: contain;
+  background-position: center;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #8f8f8f;
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transition: 0ms;
+    transform: scale(0.75);
+    background-color: #0000;
+  }
+}
+
+.button_icon {
+  width: 100%;
+  height: 100%;
+}
