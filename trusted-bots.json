@@ -1,22 +1,7 @@
 [
-  {
-    "username": "streamelements",
-    "service": "Twitch Bot HL"
-  },
-  {
-    "username": "streamholics",
-    "service": "Twitch Bot HL"
-  },
-  {
-    "username": "nightbot",
-    "service": "Twitch Bot HL"
-  },
-  {
-    "username": "streamlabs",
-    "service": "Twitch Bot HL"
-  },
-  {
-    "username": "soundalerts",
-    "service": "Twitch Bot HL"
-  }
+  "streamelements",
+  "streamholics",
+  "nightbot",
+  "streamlabs",
+  "soundalerts"
 ]
