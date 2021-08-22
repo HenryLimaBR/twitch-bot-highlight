@@ -6,7 +6,7 @@ import 'regenerator-runtime'
 
 import store from './store/store'
 
-import './styles/global.scss'
+import './app.scss'
 import App from './app'
 
 import './services/core'
