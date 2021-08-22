@@ -1,9 +1,10 @@
 class Username {
   private url_regex: RegExp[] = [
-    /https:\/\/www.twitch.tv\//g,
+    /https:\/\/\D*.twitch.tv\/u?/g,
+    /\/?u?/,
     /\/?(moderator|popout)\//g,
     /\/?/,
-    /\/\D*/g
+    /\/(\D|\d)*/g
   ]
 
   private digestUrl(url: string) {

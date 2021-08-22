@@ -1,6 +1,7 @@
 // Tested urls!
 const urls = [
   'https://www.twitch.tv/henrylimabr',
+  '/henrylimabr',
   'https://www.twitch.tv/moderator/henrylimabr',
   'https://www.twitch.tv/popout/henrylimabr/reward-queue',
   '/popout/moderator/henrylimabr/chat',
@@ -8,15 +9,19 @@ const urls = [
   'https://www.twitch.tv/popout/moderator/henrylimabr/active-mods',
   '/moderator/henrylimabr',
   'https://dashboard.twitch.tv/u/henrylimabr/home',
-  'https://dashboard.twitch.tv/u/henrylimabr/stream-manager'
+  '/u/henrylimabr/home',
+  'https://dashboard.twitch.tv/u/henrylimabr/stream-manager',
+  '/u/henrylimabr/stream-manager',
+  'https://dashboard.twitch.tv/u/henrylimabr/content/video-producer/edit/1124782693'
 ]
 
 // Yes! I should merge all these regex in a single one :P
 const regex = [
   /https:\/\/\D*.twitch.tv\/u?/g,
+  /\/?u?/,
   /\/?(moderator|popout)\//g,
   /\/?/,
-  /\/\D*/g,
+  /\/(\D|\d)*/g
 ]
 
 function regexProcess(url = '') {
