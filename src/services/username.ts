@@ -19,7 +19,7 @@ class Username {
     const halfscreen: HTMLParagraphElement | null = document.querySelector('p[data-test-selector="stream-info-card-component__title"]') as HTMLParagraphElement | null
     const fullAnchor: HTMLAnchorElement | null = fullscreen?.children[0].children[1].children[0] as HTMLAnchorElement | null
     const halfAnchor: HTMLAnchorElement | null = halfscreen?.children[0] as HTMLAnchorElement | null
-    return fullAnchor?.href || halfAnchor?.href || '/default'
+    return fullAnchor?.href || halfAnchor?.href || '/'
   }
 
   public get() {
