@@ -21,7 +21,7 @@ const MenuOptions: React.FC<any> = () => {
             </g>
           </svg>
         </button>
-        <p className={style.channel_name}>{`${username} ${chatters_count}`}</p>
+        <p className={style.channel_name}>{`${username} - ${chatters_count}`}</p>
       </div>
       
       <div></div>
