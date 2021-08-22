@@ -1,0 +1,38 @@
+.container {
+  grid-area: Buttons;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+}
+
+.button {
+  width: 60px;
+  height: 36px;
+  background-color: #111;
+  color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 2px #0008;
+  cursor: pointer;
+  transition: 100ms ease-out;
+  text-align: center;
+  user-select: none;
+  &:hover {
+    background-color: #000;
+  }
+  &:active {
+    box-shadow: none;
+    transform: translateY(4px);
+  }
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.75;
+  }
+}
+
+.page_count {
+  color: #fff;
+  padding: 0;
+  margin: 0;
+  user-select: none;
+}
