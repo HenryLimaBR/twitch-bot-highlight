@@ -1,18 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import OpenButton from './components/OpenButton'
 import Menu from './components/Menu'
+import { useAppSelector } from './store/hooks'
 
 const App: React.FC = () => {
-  const [menuState, setMenuState] = useState<boolean>(false)
+  const menu = useAppSelector((state) => state.core.menu)
 
   return (
     <>
-      <div style={{ display: menuState ? '' : 'none' }}>
-        <Menu setMenuState={setMenuState} />
+      <div style={{ display: menu ? '' : 'none' }}>
+        <Menu />
       </div>
-      <div style={{ display: !menuState ? '' : 'none' }}>
-        <OpenButton setMenuState={setMenuState} />
+      <div style={{ display: !menu ? '' : 'none' }}>
+        <OpenButton />
       </div>
     </>
   )

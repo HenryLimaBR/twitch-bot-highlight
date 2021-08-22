@@ -1,16 +1,19 @@
 import React from 'react'
-import { OpenButtonProps } from '../../../typings/rc'
 import TwitchRobotIcon from '../TwitchBotIcon'
 
 import style from './style.module.scss'
 
-const OpenButton: React.FC<OpenButtonProps> = ({ setMenuState, hidden }) => {
+import { useAppDispatch } from '../../store/hooks'
+import { setMenu } from '../../store/core/core.state'
+
+const OpenButton: React.FC<any> = () => {
+  const dispatch = useAppDispatch()
+
   return (
     <button
       className={style.open_button}
-      onClick={() => setMenuState(true)}
+      onClick={() => dispatch(setMenu(true))}
       title='Twitch Bot Highlight Tool'
-      hidden={hidden}
     >
       <TwitchRobotIcon width="100%" height="100%" />
     </button>
