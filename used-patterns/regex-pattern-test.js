@@ -7,11 +7,13 @@ const urls = [
   'https://www.twitch.tv/popout/henrylimabr/chat?popout=',
   'https://www.twitch.tv/popout/moderator/henrylimabr/active-mods',
   '/moderator/henrylimabr',
+  'https://dashboard.twitch.tv/u/henrylimabr/home',
+  'https://dashboard.twitch.tv/u/henrylimabr/stream-manager'
 ]
 
 // Yes! I should merge all these regex in a single one :P
 const regex = [
-  /https:\/\/www.twitch.tv\//g,
+  /https:\/\/\D*.twitch.tv\/u?/g,
   /\/?(moderator|popout)\//g,
   /\/?/,
   /\/\D*/g,
@@ -27,5 +29,4 @@ function regexProcess(url = '') {
 
 const parsed = urls.map(regexProcess)
 
-// Node Terminal Write!
-process.stdout.write(`${parsed}\n`)
+process.stdout.write(JSON.stringify(parsed, undefined, 2))
