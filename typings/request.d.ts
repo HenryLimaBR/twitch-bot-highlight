@@ -1,9 +1,3 @@
-export type TwitchInsightsBotObject = [username: string, live_count: number, last_seen: number]
-
-export interface TwitchInsightsResponse {
-  bots: TwitchInsightsBotObject[]
-}
-
 export interface TwitchChannelChatters {
   _links: {},
   chatter_count: number,
@@ -16,4 +10,11 @@ export interface TwitchChannelChatters {
     global_mods: string[],
     viewers: string[]
   }
+}
+
+export type TwIBot = [username: string, online: number, last_seen: number]
+
+export interface TwInsightsBots {
+  bots: TwIBot[],
+  '_total': number
 }
