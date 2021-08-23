@@ -21,7 +21,7 @@ const ListContainer: React.FC<any> = () => {
       <ul className={style.list} ref={listElement}>
         {
           list.map((user) => {
-            return <ListItem text={user} key={user} />
+            return <ListItem user={user} key={user.username} />
           })
         }
       </ul>

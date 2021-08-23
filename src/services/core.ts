@@ -1,13 +1,20 @@
-import { getChatters } from './request'
 import username from './username'
-import { setList, setChattersCount, setPageIndex, setUsername } from '../store/core/core.state'
+import { getChatters, getTrustedBots, getTwInsightsBots } from './request'
 import store from '../store/store'
+import { setList, setChattersCount, setPageIndex, setUsername } from '../store/core/core.state'
+import { ListUser } from '../../typings'
+import { addTags } from './tag'
 
 class TwitchBotHighlight {
-  private list: string[] = []
+  private list: ListUser[] = []
+
+  private bot_list: string[] = []
+  private trusted_bot_list: string[] = []
+
   private page_index: number = 0
   private page_length: number = 1
   private v_per_page: number = 100
+
   private username: string = ''
   private chatters_count = 0
 
@@ -42,11 +49,16 @@ class TwitchBotHighlight {
   }
 
   private async updateList() {
-    const response = (await getChatters(this.username))
-    this.list = Array().concat(...Object.values(response.chatters))
+    const tmiu_response = await getChatters(this.username)
+    const twib_response = await getTwInsightsBots()
+    this.trusted_bot_list = this.trusted_bot_list.length < 1
+      ? await getTrustedBots()
+      : this.trusted_bot_list
+
+    this.list = addTags(tmiu_response, twib_response, this.trusted_bot_list)
 
     this.page_length = Math.ceil(this.list.length / this.v_per_page)
-    this.chatters_count = response.chatter_count
+    this.chatters_count = tmiu_response.chatter_count
 
     if (this.page_index > this.page_length - 1) {
       this.page_index = this.page_length - 1

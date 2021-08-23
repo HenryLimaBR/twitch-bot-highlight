@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { ListUser } from '../../../typings'
 import { RootState } from '../store'
 
 export interface CoreState {
-  list: string[],
+  list:ListUser[],
   username: string,
   page_index: [number, number],
   chatters_count: number,
@@ -21,7 +22,7 @@ export const coreSlice = createSlice({
   name: 'core',
   initialState,
   reducers: {
-    setList(state, action: PayloadAction<string[]>) {
+    setList(state, action: PayloadAction<ListUser[]>) {
       state.list = action.payload
     },
     setUsername(state, action: PayloadAction<string>) {
