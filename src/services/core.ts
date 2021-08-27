@@ -24,7 +24,7 @@ class TwitchBotHighlight {
 
   constructor() {
     window.setInterval(this.userChangeWatcher.bind(this), 1000)
-    window.setInterval(this.updateList.bind(this), 60000)
+    window.setInterval(this.updateList.bind(this), 30000)
     this.username = Cookies.get['name'] || ''
   }
 
@@ -43,6 +43,8 @@ class TwitchBotHighlight {
     if (this.page_index > this.page_length - 1) {
       this.page_index = this.page_length - 1
     }
+
+    this.isModerator = (tmiu_response.chatters.moderators.includes(this.username))
 
     this.updatePage()
     this.dispatchChattersCount()
