@@ -8,7 +8,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "watch": "webpack -c ./webpack.dev.js --watch",
+    "dev": "webpack -c ./webpack.dev.js --watch",
     "tcw": "tsc --watch",
     "build": "webpack -c ./webpack.prod.js && node ./scripts/concat.js"
   },
