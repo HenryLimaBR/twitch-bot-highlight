@@ -1,5 +1,5 @@
 import React from 'react'
-import TwitchRobotIcon from '../TwitchBotIcon'
+import TwitchRobotIcon from '../icons/TwitchBotIcon'
 
 import style from './style.module.scss'
 
