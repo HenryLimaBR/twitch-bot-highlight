@@ -4,12 +4,12 @@ import { ListItemProps } from '../../../typings/rc'
 import style from './style.module.scss'
 
 const color = {
-  'streamer': '#ff0',
+  'streamer': '#0bf',
   'moderator': '#08f',
-  'vip': '#f80',
-  'viewer': '#ccc',
+  'vip': '#ff0',
+  'viewer': '#fff',
   'trusted_bot': '#0f8',
-  'untrusted_bot': '#c00'
+  'unknown_bot': '#f80'
 }
 
 const ListItem: React.FC<ListItemProps> = ({ user }) => {

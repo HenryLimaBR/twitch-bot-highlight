@@ -3,7 +3,7 @@ import { TwitchChannelChatters } from '../../typings/request'
 
 export function addTags(
   TwitchTMIData: TwitchChannelChatters,
-  untrusted_list: string[],
+  unknown_list: string[],
   trusted_list: string[]
 ): ListUser[] {
   const list: ListUser[] = []
@@ -24,13 +24,13 @@ export function addTags(
     username,
     badges: [{ source: 'Twitch', type: 'viewer' }]
   })))
-  const untrusted = list.map((user) => {
-    if (untrusted_list.includes(user.username)) {
-      user.badges.push({ source: 'Twitch Insights', type: 'untrusted_bot' })
+  const unknown = list.map((user) => {
+    if (unknown_list.includes(user.username)) {
+      user.badges.push({ source: 'Twitch Insights', type: 'unknown_bot' })
     }
     return user
   })
-  const trusted = untrusted.map((user) => {
+  const trusted = unknown.map((user) => {
     if (trusted_list.includes(user.username)) {
       user.badges.push({ source: 'Twitch Bot Highlight', type: 'trusted_bot' })
     }
