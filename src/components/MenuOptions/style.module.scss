@@ -1,0 +1,42 @@
+.container {
+  display: grid;
+  grid-template-rows: 32px 1fr;
+  grid-area: Options;
+}
+
+.window_container {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+}
+
+.close_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  justify-self: center;
+  align-self: center;
+  background-color: #111;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  transition: 100ms ease-out;
+  &:hover {
+    background-color: #000;
+    transform: scale(1.1);
+  }
+  &:active {
+    box-shadow: none;
+    transform: scale(0.75);
+  }
+}
+
+.channel_stats {
+  justify-self: center;
+  align-self: center;
+  color: #fff;
+  font-size: 12px;
+  user-select: none;
+}

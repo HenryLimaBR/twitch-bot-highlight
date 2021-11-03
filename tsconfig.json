@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "jsx": "react",
+    "strict": true,
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "declaration": true,
+    "noEmit": true,
+    "esModuleInterop": true
+  },
+  "exclude": [
+    "node_modules/**/node_modules"
+  ]
+}

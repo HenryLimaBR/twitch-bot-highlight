@@ -1,0 +1,15 @@
+.container {
+  grid-area: Box;
+  display: grid;
+  grid-template-rows: 1fr 6fr 1fr;
+  grid-template-areas: "Undefined" "List" "Buttons";
+  overflow: hidden;
+}
+
+.list_container {
+  grid-area: List;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}

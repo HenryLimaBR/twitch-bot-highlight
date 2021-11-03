@@ -1,0 +1,21 @@
+@keyframes menu_animation {
+  from {
+    transform: translate(100%, 0) scale(0);
+    opacity: 0;
+    background-color: #dfc2ca;
+  }
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-template-areas: 'Options Box';
+  width: 384px;
+  height: 560px;
+  background-color: #444;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  box-shadow: 0 4px 4px #0008;
+  box-sizing: border-box;
+  animation: menu_animation 250ms ease-out backwards;
+}
